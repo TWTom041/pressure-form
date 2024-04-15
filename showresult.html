@@ -30,19 +30,19 @@
             var message = '';
 
             if (score <= 17) {
-                message = "您的壓力指數還在能負荷的範圍。";
+                message = "<p>您的壓力指數還在能負荷的範圍。</p>";
             } else if (score >= 18 && score <= 27) {
-                message = "壓力滿困擾您，雖能勉強應付，但必需認真學習壓力管理了，同時多與良師益友聊一聊。";
+                message = "<p>壓力滿困擾您，雖能勉強應付，但必需認真學習壓力管理了，同時多與良師益友聊一聊。</p>";
             } else if (score >= 28 && score <= 42) {
-                message = "您的壓力很大，趕快去看心理衛生專業人員，接受系統性的心理治療。";
+                message = "<p>您的壓力很大，趕快去看心理衛生專業人員，接受系統性的心理治療。</p>";
             } else if (score >= 43) {
-                message = "您的壓力已很嚴重，應該看精神專科醫師，依醫師處方用藥物治療與心理治療，幫忙您的生活趕快恢復正常軌道。";
+                message = "<p>您的壓力已很嚴重，應該看精神專科醫師，依醫師處方用藥物治療與心理治療，幫忙您的生活趕快恢復正常軌道。</p>";
             }
 
             if (option === 'D') {
-                message += '\n\n你真棒，會算化學!';
+                message += '<br><br><p>你真棒，會算化學!</p>';
             } else {
-                message += '\n\n你好爛，不會算化學，我看你是不懂PV=nRT喔，去看這個影片 https://www.youtube.com/watch?v=k7I5EgglbNc';
+                message += '<br><br><p>你好爛，不會算化學，我看你是不懂PV=nRT喔，去看這個影片 https://www.youtube.com/watch?v=k7I5EgglbNc</p>';
             }
 
             resultDiv.textContent = message;
