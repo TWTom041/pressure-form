@@ -23,7 +23,13 @@ $(document).ready(function() {
             data: extraData,
             dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
             error: function () {
-                
+                let form_dat = formToObject(document.querySelector('#bootstrapForm')); 
+                let score = calc_score();
+                let option = "D";
+                if (form_dat["entry.1785058210"] != "等重之三種氣體所含分子數：甲＞氧＞乙") {
+                    option = "A";
+                }
+                window.location.href = `showresult.html?score=${score}&option=${option}`;
                 // You can also redirect the user to a custom thank-you page:
                 // window.location = 'http://www.mydomain.com/thankyoupage.html'
             }
