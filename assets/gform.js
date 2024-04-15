@@ -33,7 +33,7 @@ $(document).ready(function() {
             data: extraData,
             dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
             error: function () {
-                let gs_id = Math.floor(Math.random() * max);
+                let gs_id = Math.floor(Math.random() * 999999);
                 document.cookie = `gs_id=${gs_id}; expires=Tue, 19 Jan 2038 03:14:07 GMT`;
                 alert('Form Submitted. Thanks.');
                 let form_dat = formToObject(document.querySelector('#bootstrapForm')); 
