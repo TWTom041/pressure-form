@@ -19,7 +19,7 @@ function getCookie(name) {
 
 $(document).ready(function() {
     $('#bootstrapForm').submit(function (event) {
-        if (getCookie("gs_id") !== null) {
+        if (getCookie("gs_id") !== undefined) {
             alert("不要重複作答");
             window.location.replace("https://t.ly/LEMaY");
             return
