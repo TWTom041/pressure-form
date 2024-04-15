@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stress Assessment</title>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script>
+        // Function to parse URL parameters
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Get the score and option from URL
+        var score = parseInt(getParameterByName('score'));
+        var option = getParameterByName('option');
+
+        // Function to display result based on score
+        function displayResult(score, option) {
+            var resultDiv = document.getElementById('result');
+            var message = '';
+
+            if (score <= 17) {
+                message = "您的壓力指數還在能負荷的範圍。";
+            } else if (score >= 18 && score <= 27) {
+                message = "壓力滿困擾您，雖能勉強應付，但必需認真學習壓力管理了，同時多與良師益友聊一聊。";
+            } else if (score >= 28 && score <= 42) {
+                message = "您的壓力很大，趕快去看心理衛生專業人員，接受系統性的心理治療。";
+            } else if (score >= 43) {
+                message = "您的壓力已很嚴重，應該看精神專科醫師，依醫師處方用藥物治療與心理治療，幫忙您的生活趕快恢復正常軌道。";
+            }
+
+            if (option === 'D') {
+                message += ' 你真棒';
+            } else {
+                message += ' 你好爛';
+            }
+
+            resultDiv.textContent = message;
+        }
+
+        // Call the displayResult function with the score and option
+        displayResult(score, option);
+    </script>
+</body>
+</html>
