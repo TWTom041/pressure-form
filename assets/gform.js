@@ -10,19 +10,32 @@ function calc_score() {
     return score;
 }
 
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+} 
+
 
 $(document).ready(function() {
     $('#bootstrapForm').submit(function (event) {
+        if (getCookie("gs_id") !== null) {
+            alert("不要重複作答");
+            window.location.replace("https://t.ly/LEMaY");
+            return
+        }
         event.preventDefault()
         var extraData = {}
-        
+        $(".btn").attr("disabled", true);
         // Submit of form should be successful but JSONP callback will fail because Google Forms
         // does not support it, so this is handled as a failure.
-        alert('Form Submitted. Thanks.');
         $('#bootstrapForm').ajaxSubmit({
             data: extraData,
             dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
             error: function () {
+                let gs_id = Math.floor(Math.random() * max);
+                document.cookie = `gs_id=${gs_id}; expires=Tue, 19 Jan 2038 03:14:07 GMT`;
+                alert('Form Submitted. Thanks.');
                 let form_dat = formToObject(document.querySelector('#bootstrapForm')); 
                 let score = calc_score();
                 let option = "D";
@@ -30,8 +43,6 @@ $(document).ready(function() {
                     option = "A";
                 }
                 window.location.href = `showresult.html?score=${score}&option=${option}`;
-                // You can also redirect the user to a custom thank-you page:
-                // window.location = 'http://www.mydomain.com/thankyoupage.html'
             }
         })
     })
